@@ -15,16 +15,10 @@ const user3 = {
 
 const printDetails = function (company, city) {
   return console.log(
-    `name is ${this.name} and compmay is ${company} from ${city}`
+    `name is ${this.name} and compmay is ${company} lives in ${city}`
   );
 };
 
 printDetails.call(user1, "Yardi", "dhule");
 printDetails.call(user2, "Birla Soft", "pune");
 printDetails.apply(user3, ["jpmc", "pune"]);
-
-// bind
-
-const bindMethod = printDetails.bind(user1, "yardi", " bind");
-
-bindMethod();
