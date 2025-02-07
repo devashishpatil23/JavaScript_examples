@@ -33,3 +33,5 @@ greeting();
 The function greeting declaration is hoisted first, overriding the var greeting declaration initially.*/
 
 /*When a variable or function declaration has the same name, the latest assignment (or declaration) determines its behavior at runtime.*/
+
+

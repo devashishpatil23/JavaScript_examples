@@ -1,25 +1,76 @@
 // map
-
 const arr = [1, 2, 3, 4, 5];
 
-const multiplyBy2 = arr.map((num, idx, arr) => {
-  return num * 2;
-});
-
 Array.prototype.myMap = function (cb) {
-  let temp = []; //as  map returns transformed array s
+  const transArr = [];
+
   for (let i = 0; i < this.length; i++) {
-    temp.push(cb(this[i]));
+    transArr.push(cb(this[i]));
+  }
+  return transArr;
+};
+
+const add_2 = arr.myMap((e) => e + 2);
+
+console.log(add_2);
+
+// for each
+Array.prototype.myForEach = function (cb) {
+  for (let i = 0; i < this.length; i++) {
+    cb(this[i], i);
   }
 };
 
-const add_2 = arr.myMap((el) => {
-  return el + 2;
-});
+arr.myForEach((e, i) => console.log(e, i));
 
-// console.log(add_2);
+// reduce
 
-// for each
-const arr1 = [1, 2, 3, 4, 5, 6];
-arr1.forEach((el) => console.log(el));
-console.log("hello");
+Array.prototype.myReduce = function (cb, int) {
+  let acc = int;
+  for (let i = 0; i < this.length; i++) {
+    acc = acc ? cb(acc, this[i]) : this[i];
+  }
+  return acc;
+};
+
+const sum = arr.myReduce((acc, cur) => {
+  return (acc += cur);
+}, 0);
+
+console.log(sum);
+
+// filter
+
+Array.prototype.myFilter = function (cb) {
+  let arr = [];
+
+  for (let i = 0; i < this.length; i++) {
+    if (cb(this[i])) {
+      arr.push(this[i]);
+    }
+  }
+  return arr;
+};
+
+const filteredArr = arr.myFilter((e) => e > 2);
+
+console.log(filteredArr);
+
+// call
+const myObj = {
+  name: "swami",
+};
+
+function printAge(age) {
+  console.log(`${this.name} ${age}`);
+}
+
+Function.prototype.myCall = function (obj = {}, ...args) {
+  if (typeof this !== "function") {
+    throw new Error("not callable");
+  }
+  obj.fn = this;
+  obj.fn(...args);
+};
+
+printAge.myCall(myObj, 25);

@@ -22,6 +22,7 @@ const printDetails = function (company, city) {
 printDetails.call(user1, "Yardi", "dhule");
 printDetails.call(user2, "Birla Soft", "pune");
 printDetails.apply(user3, ["jpmc", "pune"]);
+printDetails.call(user1, "jpmc", "pune");
 
 // bind
 
