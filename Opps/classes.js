@@ -1,3 +1,4 @@
+// behind the sences same as contruntor function
 class BankAcconut {
   customerName;
   accountNumber;
